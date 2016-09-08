@@ -148,9 +148,9 @@ getSample(const std::vector<std::vector<int> >& src1, std::vector<Mat>& dst1, co
     }
 
     random_shuffle(sample_vec.begin(), sample_vec.end());
-    for(int i = 0; i < _size; i++){
+    for(int i = 0; i < _size; i++){// batch_size
         int randomNum = sample_vec[i];
-        for(int j = 0; j < T; j++){
+        for(int j = 0; j < T; j++){// nGram
             Mat tmp1 = oneOfN(src1[randomNum][j], re_wordmap.size());
             Rect roi = Rect(i, 0, 1, re_wordmap.size());
             Mat tmp2 = dst1[j](roi);
@@ -190,11 +190,13 @@ getLabelMat(const std::vector<std::vector<int> >& src, Mat& dst){
     }
 }
 
-
-
-
-
-
-
-
-
+void showMat(Mat& mat){
+    for(size_t i = 0; i < (size_t) mat.cols; i++){
+        for(size_t j = 0; j < (size_t) mat.rows; j++){
+            if(mat.ATD(j, i) == 1.0){
+                printf("%d %f ", (int)j, mat.ATD(j, i));
+            }
+        }
+        printf("\n");
+    } 
+}

@@ -27,3 +27,5 @@ void getSample(const std::vector<std::vector<int> >&, std::vector<Mat>&, const s
 
 void getDataMat(const std::vector<std::vector<int> >& , std::vector<Mat>& , std::vector<string> &);
 void getLabelMat(const std::vector<std::vector<int> >& , Mat&);
+
+void showMat(Mat& mat);

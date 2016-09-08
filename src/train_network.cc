@@ -45,7 +45,7 @@ trainNetwork(const std::vector<std::vector<int> > &x, std::vector<std::vector<in
             v_hl_U_r.push_back(tmpU);
             hlW_rd2.push_back(tmpW);
             hlU_rd2.push_back(tmpU);
-        }
+        }//gradient checking
 
         double Momentum_w = 0.5;
         double Momentum_u = 0.5;
@@ -62,6 +62,7 @@ trainNetwork(const std::vector<std::vector<int> > &x, std::vector<std::vector<in
                 std::vector<Mat> sampleX;
                 Mat sampleY = Mat::zeros(nGram, batch_size, CV_64FC1);
                 getSample(x, sampleX, y, sampleY, re_wordmap);
+                //showMat(sampleX[0]);
                 getNetworkCost(sampleX, sampleY, HiddenLayers, smr);
                 // softmax update
                 smrW_ld2 = Momentum_d2 * smrW_ld2 + (1.0 - Momentum_d2) * smr.W_ld2;
